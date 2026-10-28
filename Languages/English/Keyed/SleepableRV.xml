@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SleepableRV_DeployBunks>Set up beds when parked</SleepableRV_DeployBunks>
+  <SleepableRV_DeployBunksDesc>While parked, this RV sets up its beds so colonists can claim them, sleep in them and share them like any other bed. The beds are packed away automatically when the vehicle is drafted or starts moving.\n\nTurn this off to keep the beds packed while parked.</SleepableRV_DeployBunksDesc>
+  <SleepableRV_BunksDeployed>Beds set up: {0} / {1}</SleepableRV_BunksDeployed>
+  <SleepableRV_BunksPacked>Beds packed away</SleepableRV_BunksPacked>
+  <SleepableRV_BunkInside>Inside {0}: climate controlled and sheltered from the weather.</SleepableRV_BunkInside>
+  <SleepableRV_BunkBeside>Laid out beside {0}: no room inside, so no shelter.</SleepableRV_BunkBeside>
+</LanguageData>

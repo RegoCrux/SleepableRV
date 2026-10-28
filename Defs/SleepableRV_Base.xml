@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--============================== Research ==============================-->
+
+  <ResearchProjectDef>
+    <defName>SleepableRV_TruckCampers</defName>
+    <label>truck campers</label>
+    <description>Build a rugged pickup truck with a slide-in camper on the bed: a tough off-road vehicle that sleeps two in a real bed wherever it parks.</description>
+    <baseCost>1200</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>Machining</li>
+      <li>ComplexFurniture</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>5.50</researchViewY>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>SleepableRV_Motorhomes</defName>
+    <label>motorhomes</label>
+    <description>Build a full-size motorhome: a house on wheels with two double beds and climate control. Fast and comfortable on roads, clumsy anywhere else.</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>SleepableRV_TruckCampers</li>
+      <li>Electricity</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>5.50</researchViewY>
+  </ResearchProjectDef>
+
+  <!--============================== Vehicle bases ==============================-->
+
+  <Vehicles.VehicleDef Name="SleepableRV_VehicleBase" ParentName="BaseVehiclePawn" Abstract="True">
+    <vehicleCategory>Transport</vehicleCategory>
+    <techLevel>Industrial</techLevel>
+    <vehicleType>Land</vehicleType>
+    <properties>
+      <customTerrainCosts DisallowTerrainWithTag="Water"/>
+    </properties>
+  </Vehicles.VehicleDef>
+
+  <Vehicles.VehicleBuildDef Name="SleepableRV_BuildableBase" ParentName="VehicleBaseBuildable" Abstract="True">
+    <designationCategory>VF_Vehicles</designationCategory>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+  </Vehicles.VehicleBuildDef>
+
+</Defs>

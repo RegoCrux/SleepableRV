@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Sleepable RVs</name>
+  <author>YourName</author>
+  <packageId>YourName.SleepableRV</packageId>
+  <modVersion>0.1.0</modVersion>
+  <description>Two recreational vehicles for Vehicle Framework, with beds your colonists actually use.
+
+- Truck camper: a four-wheel-drive pickup with a slide-in camper. Handles rough ground and snow. Sleeps 2 in one double bed.
+- Motorhome: a full-size house on wheels. Fast on roads, poor off-road. Sleeps 4 in two double beds.
+
+When an RV parks, it sets up real beds inside the vehicle. Colonists claim them, sleep in them and share them with their partners like any other bed. Sleeping inside an RV doesn't count as sleeping outside or on the ground, keeps sleepers dry, and its climate control protects against cold and heat. The beds pack away automatically when the vehicle is drafted or drives off, and the same colonists reclaim them at the next stop. If a bed doesn't fit under the vehicle, it is laid out beside it instead.
+
+Requires Vehicle Framework.</description>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>SmashPhil.VehicleFramework</packageId>
+      <displayName>Vehicle Framework</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3014915404</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>SmashPhil.VehicleFramework</li>
+  </loadAfter>
+</ModMetaData>

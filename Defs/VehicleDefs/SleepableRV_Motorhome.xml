@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Full-size motorhome. Fast and comfortable on roads, poor off-road. Sleeps four in two double beds. -->
+
+  <Vehicles.VehicleDef ParentName="SleepableRV_VehicleBase">
+    <defName>SleepableRV_Motorhome</defName>
+    <label>motorhome</label>
+    <description>A full-size motorhome built on a bus chassis: a house on wheels with a rear bedroom, a fold-out double bed in the lounge, and climate control. Both beds are set up whenever it parks, so four colonists can claim them and sleep in comfort. It cruises quickly along roads but struggles badly on rough ground, hills and snow.\n\n&lt;color=#bb8f04&gt;Crew:&lt;/color&gt; Driver x1, Co-pilot x1, Lounge x4\n&lt;color=#bb8f04&gt;Sleeps:&lt;/color&gt; 4 (two double beds)\n&lt;color=#bb8f04&gt;Fuel type:&lt;/color&gt; Chemfuel</description>
+
+    <graphicData>
+      <texPath>Things/Vehicles/SleepableRV/Motorhome/Motorhome</texPath>
+      <graphicClass>Vehicles.Graphic_Vehicle</graphicClass>
+      <shaderType>CutoutComplexPattern</shaderType>
+      <drawSize>(3,8)</drawSize>
+      <color>(232, 228, 218)</color>
+      <colorTwo>(120, 82, 50)</colorTwo>
+      <colorThree>(70, 70, 75)</colorThree>
+    </graphicData>
+
+    <fillPercent>0.95</fillPercent>
+    <buildDef>SleepableRV_Motorhome_Blueprint</buildDef>
+    <size>(2,7)</size>
+
+    <statBases>
+      <ArmorRating_Blunt>0.15</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.3</ArmorRating_Sharp>
+      <ArmorRating_Heat>1.0</ArmorRating_Heat>
+      <Flammability>0.6</Flammability>
+      <MarketValue>7500</MarketValue>
+    </statBases>
+
+    <vehicleStats>
+      <Mass>500</Mass>
+      <MoveSpeed>9</MoveSpeed>
+      <CargoCapacity>420</CargoCapacity>
+      <RepairRate>0.3</RepairRate>
+    </vehicleStats>
+
+    <race>
+      <baseBodySize>5.5</baseBodySize>
+    </race>
+
+    <properties>
+      <!-- World map: lower is faster. Excellent on roads, bad off-road, worse in hills and snow. -->
+      <offRoadMultiplier>2</offRoadMultiplier>
+      <winterSpeedMultiplier>3.5</winterSpeedMultiplier>
+      <visibilityWeight>5.5</visibilityWeight>
+      <customRoadCosts AssignDefaults="0.25"/>
+      <customHillinessCosts>
+        <li>
+          <key>SmallHills</key>
+          <value>1</value>
+        </li>
+        <li>
+          <key>LargeHills</key>
+          <value>3</value>
+        </li>
+        <li>
+          <key>Mountainous</key>
+          <value>6</value>
+        </li>
+      </customHillinessCosts>
+
+      <roles>
+        <li>
+          <key>driver</key>
+          <label>Driver</label>
+          <slots>1</slots>
+          <slotsToOperate>1</slotsToOperate>
+          <comfort>0.6</comfort>
+          <hitbox>
+            <cells>
+              <li>(0, 3)</li>
+            </cells>
+          </hitbox>
+          <handlingTypes>
+            <li>Movement</li>
+          </handlingTypes>
+        </li>
+        <li>
+          <key>copilot</key>
+          <label>Co-pilot</label>
+          <slots>1</slots>
+          <comfort>0.65</comfort>
+          <hitbox>
+            <cells>
+              <li>(1, 3)</li>
+            </cells>
+          </hitbox>
+        </li>
+        <li>
+          <key>lounge</key>
+          <label>Lounge</label>
+          <slots>4</slots>
+          <comfort>0.8</comfort>
+          <hitbox>
+            <cells>
+              <li>(0, 2)</li>
+              <li>(1, 2)</li>
+              <li>(0, 1)</li>
+              <li>(1, 1)</li>
+              <li>(0, 0)</li>
+              <li>(1, 0)</li>
+            </cells>
+          </hitbox>
+        </li>
+      </roles>
+    </properties>
+
+    <components>
+      <li>
+        <key>Engine</key>
+        <label>Engine</label>
+        <health>80</health>
+        <priorityStatEfficiency>true</priorityStatEfficiency>
+        <depth>External</depth>
+        <reactors>
+          <li Class="Vehicles.Reactor_Explosive">
+            <indicator>VF_Explosive</indicator>
+            <chance>0.15</chance>
+            <healthPercent>0.15</healthPercent>
+            <radius>3</radius>
+            <damageDef>Flame</damageDef>
+          </li>
+        </reactors>
+        <hitbox>
+          <side>Front</side>
+        </hitbox>
+        <categories>
+          <li>MoveSpeed</li>
+        </categories>
+      </li>
+      <li>
+        <key>FrontLeftWheel</key>
+        <label>Front left wheel</label>
+        <health>45</health>
+        <depth>External</depth>
+        <armor>
+          <ArmorRating_Blunt>0</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0</ArmorRating_Sharp>
+        </armor>
+        <tags>
+          <li>Wheel</li>
+        </tags>
+        <hitbox>
+          <fallthrough>false</fallthrough>
+          <cells>
+            <li>(0, 2)</li>
+          </cells>
+        </hitbox>
+        <categories>
+          <li>MoveSpeed</li>
+        </categories>
+      </li>
+      <li>
+        <key>FrontRightWheel</key>
+        <label>Front right wheel</label>
+        <health>45</health>
+        <depth>External</depth>
+        <armor>
+          <ArmorRating_Blunt>0</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0</ArmorRating_Sharp>
+        </armor>
+        <tags>
+          <li>Wheel</li>
+        </tags>
+        <hitbox>
+          <fallthrough>false</fallthrough>
+          <cells>
+            <li>(1, 2)</li>
+          </cells>
+        </hitbox>
+        <categories>
+          <li>MoveSpeed</li>
+        </categories>
+      </li>
+      <li>
+        <key>BackLeftWheels</key>
+        <label>Back left dual wheels</label>
+        <health>70</health>
+        <depth>External</depth>
+        <armor>
+          <ArmorRating_Blunt>0</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0</ArmorRating_Sharp>
+        </armor>
+        <tags>
+          <li>Wheel</li>
+        </tags>
+        <hitbox>
+          <fallthrough>false</fallthrough>
+          <cells>
+            <li>(0, -2)</li>
+          </cells>
+        </hitbox>
+        <categories>
+          <li>MoveSpeed</li>
+        </categories>
+      </li>
+      <li>
+        <key>BackRightWheels</key>
+        <label>Back right dual wheels</label>
+        <health>70</health>
+        <depth>External</depth>
+        <armor>
+          <ArmorRating_Blunt>0</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0</ArmorRating_Sharp>
+        </armor>
+        <tags>
+          <li>Wheel</li>
+        </tags>
+        <hitbox>
+          <fallthrough>false</fallthrough>
+          <cells>
+            <li>(1, -2)</li>
+          </cells>
+        </hitbox>
+        <categories>
+          <li>MoveSpeed</li>
+        </categories>
+      </li>
+      <li>
+        <key>Chemtank</key>
+        <label>Chemtank</label>
+        <health>50</health>
+        <depth>Internal</depth>
+        <reactors>
+          <li Class="Vehicles.Reactor_FuelLeak"/>
+          <li Class="Vehicles.Reactor_Explosive">
+            <indicator>VF_Explosive</indicator>
+            <chance>0.25</chance>
+            <healthPercent>0.2</healthPercent>
+            <radius>3</radius>
+            <damageDef>Flame</damageDef>
+          </li>
+        </reactors>
+        <hitbox>
+          <cells>
+            <li>(0, -1)</li>
+            <li>(1, -1)</li>
+          </cells>
+        </hitbox>
+      </li>
+      <li>
+        <key>Windshield</key>
+        <label>Windshield</label>
+        <health>30</health>
+        <depth>External</depth>
+        <hitbox>
+          <cells>
+            <li>(0, 3)</li>
+            <li>(1, 3)</li>
+          </cells>
+        </hitbox>
+      </li>
+      <li>
+        <key>LeftWall</key>
+        <label>Left wall</label>
+        <health>70</health>
+        <depth>External</depth>
+        <hitbox>
+          <side>Left</side>
+        </hitbox>
+      </li>
+      <li>
+        <key>RightWall</key>
+        <label>Right wall</label>
+        <health>70</health>
+        <depth>External</depth>
+        <hitbox>
+          <side>Right</side>
+        </hitbox>
+      </li>
+      <li>
+        <key>RearWall</key>
+        <label>Rear wall</label>
+        <health>60</health>
+        <depth>External</depth>
+        <hitbox>
+          <side>Back</side>
+        </hitbox>
+      </li>
+      <li>
+        <key>Roof</key>
+        <label>Roof</label>
+        <health>60</health>
+        <depth>External</depth>
+      </li>
+    </components>
+
+    <comps>
+      <li Class="Vehicles.CompProperties_FueledTravel">
+        <fuelType>Chemfuel</fuelType>
+        <leakDef>Filth_Fuel</leakDef>
+        <fuelConsumptionRate>28</fuelConsumptionRate>
+        <fuelCapacity>200</fuelCapacity>
+      </li>
+      <li Class="SleepableRV.CompProperties_RVBunks">
+        <bunks>
+          <li>SleepableRV_DoubleBunk</li>
+          <li>SleepableRV_DoubleBunk</li>
+        </bunks>
+        <passengerHediff>SleepableRV_RVClimate</passengerHediff>
+      </li>
+    </comps>
+  </Vehicles.VehicleDef>
+
+  <Vehicles.VehicleBuildDef ParentName="SleepableRV_BuildableBase">
+    <defName>SleepableRV_Motorhome_Blueprint</defName>
+    <label>motorhome</label>
+    <description>A full-size motorhome built on a bus chassis: a house on wheels with a rear bedroom, a fold-out double bed in the lounge, and climate control. Both beds are set up whenever it parks, so four colonists can claim them and sleep in comfort. It cruises quickly along roads but struggles badly on rough ground, hills and snow.\n\n&lt;color=#bb8f04&gt;Crew:&lt;/color&gt; Driver x1, Co-pilot x1, Lounge x4\n&lt;color=#bb8f04&gt;Sleeps:&lt;/color&gt; 4 (two double beds)\n&lt;color=#bb8f04&gt;Fuel type:&lt;/color&gt; Chemfuel</description>
+    <graphicData>
+      <texPath>Things/Vehicles/SleepableRV/Motorhome/Motorhome</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,8)</drawSize>
+    </graphicData>
+    <size>(2,7)</size>
+    <statBases>
+      <MaxHitPoints>900</MaxHitPoints>
+      <WorkToBuild>22000</WorkToBuild>
+      <Flammability>0.05</Flammability>
+    </statBases>
+    <researchPrerequisites>
+      <li>SleepableRV_Motorhomes</li>
+    </researchPrerequisites>
+    <costList>
+      <Steel>550</Steel>
+      <ComponentIndustrial>14</ComponentIndustrial>
+      <Cloth>100</Cloth>
+      <WoodLog>80</WoodLog>
+    </costList>
+    <thingToSpawn>SleepableRV_Motorhome</thingToSpawn>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </Vehicles.VehicleBuildDef>
+
+</Defs>

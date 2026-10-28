@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--============================== Climate control ==============================-->
+
+  <HediffDef>
+    <defName>SleepableRV_RVClimate</defName>
+    <label>RV climate control</label>
+    <description>Sheltering inside a recreational vehicle. The furnace, air conditioning and insulation keep the temperature comfortable.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <defaultLabelColor>(100, 200, 255)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+      <li Class="SleepableRV.HediffCompProperties_RVClimate"/>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ComfyTemperatureMin>-25</ComfyTemperatureMin>
+          <ComfyTemperatureMax>15</ComfyTemperatureMax>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>SleepableRV_SleptInRV</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>slept in the RV</label>
+        <description>I slept in a real bed, warm and dry, with the rain drumming on the roof. Life on the road isn't so bad.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!--============================== Bunks ==============================-->
+  <!-- Spawned by a parked RV (CompProperties_RVBunks). Never built, minified, deconstructed or traded. -->
+
+  <ThingDef Name="SleepableRV_BunkBase" ParentName="BuildingBase" Abstract="True">
+    <thingClass>SleepableRV.Building_RVBunk</thingClass>
+    <altitudeLayer>Building</altitudeLayer>
+    <tickerType>Rare</tickerType>
+    <passability>Standable</passability>
+    <pathCost>14</pathCost>
+    <fillPercent>0</fillPercent>
+    <useHitPoints>false</useHitPoints>
+    <castEdgeShadows>false</castEdgeShadows>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <canOverlapZones>true</canOverlapZones>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <filthLeaving IsNull="True"/>
+    <tradeability>None</tradeability>
+    <techLevel>Industrial</techLevel>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Beauty>0</Beauty>
+      <Mass>0</Mass>
+      <MarketValue>0</MarketValue>
+      <Comfort>0.75</Comfort>
+      <BedRestEffectiveness>1</BedRestEffectiveness>
+      <ImmunityGainSpeedFactor>1.07</ImmunityGainSpeedFactor>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_AssignableToPawn">
+        <drawAssignmentOverlay>false</drawAssignmentOverlay>
+        <compClass>CompAssignableToPawn_Bed</compClass>
+      </li>
+    </comps>
+    <building>
+      <bed_showSleeperBody>false</bed_showSleeperBody>
+      <bed_canBeMedical>false</bed_canBeMedical>
+      <bed_caravansCanUse>false</bed_caravansCanUse>
+      <bed_healPerDay>2</bed_healPerDay>
+      <deconstructible>false</deconstructible>
+      <claimable>false</claimable>
+      <ai_chillDestination>false</ai_chillDestination>
+      <wakeDormantPawnsOnConstruction>false</wakeDormantPawnsOnConstruction>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+      <paintable>false</paintable>
+      <buildingTags>
+        <li>Bed</li>
+      </buildingTags>
+    </building>
+    <modExtensions>
+      <li Class="SleepableRV.RVBunkExtension">
+        <negateSleptOutside>true</negateSleptOutside>
+        <negateSleptOnGround>true</negateSleptOnGround>
+        <negateWet>true</negateWet>
+        <negateTemperatureThoughts>true</negateTemperatureThoughts>
+        <sleeperHediff>SleepableRV_RVClimate</sleeperHediff>
+        <sleptThought>SleepableRV_SleptInRV</sleptThought>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="SleepableRV_BunkBase">
+    <defName>SleepableRV_DoubleBunk</defName>
+    <label>RV double bed</label>
+    <description>A double bed in a parked recreational vehicle. It is set up when the RV is parked and packed away when it drives off; whoever claimed it gets it back at the next stop.\n\nInside the RV it keeps sleepers warm and dry. If there's no room under the vehicle, it is laid out beside it as a plain bedroll.</description>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Bed/BedrollDouble</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+      <drawSize>(2,2)</drawSize>
+      <color>(96,118,150)</color>
+    </graphicData>
+    <size>(2,2)</size>
+  </ThingDef>
+
+</Defs>

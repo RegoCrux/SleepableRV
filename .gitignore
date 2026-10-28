@@ -426,3 +426,8 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# SleepableRV build intermediates (Assemblies\SleepableRV.dll is committed so the mod runs from a clone)
+Source/obj/
+Source/bin/
+!Assemblies/*.dll
